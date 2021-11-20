@@ -16,7 +16,7 @@ export default function OrderHistory({ restoName }: { restoName: string }) {
     const list = [
         {
           name: 'McDonald\'s',
-          total_Price: '$17',
+          total_Price: '$18',
           avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
           time_of_order:'20/11/2021 4:26 P.M',
           rating: <Rating

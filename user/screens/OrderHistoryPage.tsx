@@ -9,7 +9,6 @@ import { RootTabScreenProps } from '../types';
 export default function OrderHistoryPage({ navigation }: RootTabScreenProps<'OrderHistory'>) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Order History</Text>
       <OrderHistory restoName="McDonald's"/>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>

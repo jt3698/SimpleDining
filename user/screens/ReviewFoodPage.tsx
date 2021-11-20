@@ -11,15 +11,12 @@ import FoodDetail from '../components/FoodDetail';
 import OrderHistory from '../components/OrderHistory';
 import ReviewFood from '../components/ReviewFood';
 
-export default function BrowseRestosPage({ navigation }: RootTabScreenProps<'BrowseRestos'>) {
+export default function ReviewFoodPage({ navigation }: RootTabScreenProps<'ReviewFood'>) {
   return (
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       {/* INSERT SCROLLBAR HERE LATER */}
-      <RestoPanelInfo restoName ="McDonald's"/>
-
-      {/* Code below was used to debug */}
-      {/* <ReviewFood restoName = "Mcdonakds"/> */}
+      <ReviewFood restoName ="McDonald's"/>
     </View>
   );
 }
