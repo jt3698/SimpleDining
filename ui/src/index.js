@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import MainWrapper from './components/MainWrapper';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/" element={<MainWrapper />}>
+          <Route path="login" element={<LoginPage />}/>
+        </Route>
+        {/* default route */}
+        <Route path="*" element={<Navigate to="login" />} />
+      </Routes>
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
