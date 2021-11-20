@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import MainWrapper from './components/MainWrapper';
 import TablesPage from './pages/TablesPage';
 
+// TODO: secure the routes, i.e. redirect to login if not logged in.
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
