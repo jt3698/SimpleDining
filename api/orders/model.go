@@ -3,13 +3,14 @@ package orders
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type Item struct{
-	name string `bson:"name"`
-	price string `bson:"price"`
-	avatar_url string `bson:"avatar_url"`
-	quantity string `bson:"quantity"`
+	Name string `bson:"name"`
+	Price string `bson:"price"`
+	Avatar_url string `bson:"avatar_url"`
+	Quantity string `bson:"quantity"`
 }
 
 type Order struct {
-	ID primitive.ObjectID   `bson:"_id"`
-	list []Item `bson:"list"`
+	ID primitive.ObjectID `bson:"_id"`
+	Items []Item `bson:"items"`
+	Table_number int `bson:"table_number"`
 }

@@ -2,9 +2,10 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-	width: 100%;
-	height: 100%;
+
 	position: absolute;
+	top: 0px;
+	left: 0px;
 `;
 const TablePopup = (props)=>{
 

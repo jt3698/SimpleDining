@@ -1,8 +1,9 @@
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Popup from "../components/TablePopup";
-import floorPlan from '../floorplan.jpg'
+import { getOrders } from "../api";
+import TablePopup from "../components/TablePopup";
+import floorPlan from '../images/floorplan.jpg'
+import notificationIcon from '../images/notification-icon.png'
 
 const PageWrapper = styled.div`
 	width: 100%;
@@ -45,18 +46,50 @@ const StyledTables = styled.div`
 	width: ${props => props.diameter};
 	height: 0;
 	padding-bottom: ${props => props.diameter};
-	background-color: ${props => props.color};
+	background-color: ${props => props.color}33;
 	position: absolute;
 	top: ${props => props.top};
 	left: ${props => props.left};
-	opacity: 0.2;
 `
+
+const StyledNotif = styled.img`
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 0px;
+	left: 80%;
+`;
 
 const TablesPage = (props) => {
 	
 	const [selected, setSelected] = useState("Food")
 	const [showPopup, setShowPopup] = useState(-1)
+	const [showNotif, setShowNotif] = useState(Array(5).fill(0))
+	const [orders, setOrders] = useState([])
 	
+	useEffect(()=>{
+		(async ()=>setOrders(await getOrders()))()
+	},[])
+
+	useEffect(()=>{
+		const intervalID = setInterval(async ()=>{
+			const newOrders = await getOrders();
+			const newShowNotif = showNotif.slice()
+			if(orders !== newOrders){
+				newOrders.forEach(element => {
+					if(!orders.some(x=>x.ID === element.ID))
+						newShowNotif[element.Table_number] += 1;
+				});
+				setShowNotif(newShowNotif)
+				setOrders(newOrders);
+			}
+		}, 5000)
+
+		return ()=>{
+			clearInterval(intervalID);
+		}
+	},[orders, showNotif])
+
 	// TODO get heatprops and image from backend?
 	const heatProps = {
 		"Locations": [
@@ -100,12 +133,11 @@ const TablesPage = (props) => {
 				</ButtonsWrapper>
 				<StyledImage src={floorPlan} />
 				{heatProps["Locations"].map((props,idx)=>
-					<StyledTables onClick={()=>setShowPopup(idx)} {...props} color={heatProps[selected][idx]}/>
+					<StyledTables key={idx} onClick={()=>setShowPopup(idx)} {...props} color={heatProps[selected][idx]}>
+						{showNotif[idx]>0 && <StyledNotif src={notificationIcon} />}
+					</StyledTables>
 				)}
-				{heatProps["Locations"].map((props,idx)=>{
-					if(showPopup === idx)return <Popup number={idx}/>
-					return null;
-				})}
+				{showPopup !== -1 && <TablePopup number={showPopup}/>}
 
 			</ImageWrapper>
 		</PageWrapper>
