@@ -1,1 +1,1 @@
-# SimpleDining-
+# SimpleDining
