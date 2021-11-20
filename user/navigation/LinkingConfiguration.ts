@@ -35,6 +35,16 @@ const linking: LinkingOptions<RootStackParamList> = {
               AddToCartPage: 'AddToCart',
             },
           },
+          ReviewFood: {
+            screens: {
+              AddToCartPage: 'ReviewFood',
+            },
+          },
+          ViewCart: {
+            screens: {
+              AddToCartPage: 'ViewCart',
+            },
+          },
         },
       },
       Modal: 'modal',

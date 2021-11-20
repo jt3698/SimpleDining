@@ -10,7 +10,7 @@ import FoodPanelInfo from '../components/FoodPanelInfo';
 import FoodDetail from '../components/FoodDetail';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 
-export default function BrowseFoodsPage({ navigation }: RootTabScreenProps<'BrowseFood'>) {
+export default function ViewCartPage({ navigation }: RootTabScreenProps<'ViewCart'>) {
   return (
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />

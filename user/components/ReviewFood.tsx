@@ -13,7 +13,7 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 import { Divider } from 'react-native-elements';
 
 
-export default function FoodPanelInfo({ restoName }: { restoName: string }) {
+export default function ReviewFood({ restoName }: { restoName: string }) {
     const list = [
         {
           name: 'Big Mac',
@@ -22,8 +22,7 @@ export default function FoodPanelInfo({ restoName }: { restoName: string }) {
           avatar_url: 'https://www.mcdonalds.com/is/image/content/dam/usa/nfl/nutrition/items/hero/desktop/t-mcdonalds-Big-Mac.jpg',
           description: 'Two 100% beef patties, a slice of cheese, lettuce, onion and pickles. And the sauce. That unbeatable, tasty Big Mac® sauce. You know you want to.      ',
           rating: <Rating
-            showRating fractions={1} readonly={true} startingValue={4.2} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>,
-            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View" ></Button>
+            showRating fractions={1}  startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>,
             
         },
         {
@@ -32,30 +31,9 @@ export default function FoodPanelInfo({ restoName }: { restoName: string }) {
           avatar_url: 'https://www.mcdonalds.com/is/image/content/dam/usa/nfl/nutrition/items/hero/desktop/t-mcdonalds-Filet-O-Fish.png',
           description: 'Delicious white Hoki or Pollock fish in crispy breadcrumbs, with cheese and tartare sauce, in a steamed bun.',
           rating: <Rating
-             showRating fractions={1} readonly={true} startingValue={4.1} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}
+             showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}
             />,
-            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View" ></Button>
-        },
-        {
-            name: '6 piece McNuggets',
-            price: "$4",
-            avatar_url: 'https://www.mcdonalds.com/is/image/content/dam/uk/nfl/nutrition/nfl-product/product/products/mcdonalds-Chicken-McNuggets-6-pieces.jpg',
-            description: 'McDonald’s 6 piece Chicken McNuggets® are made with 100% chicken breast meat in a deliciously crispy coating, just waiting to be dipped. A firm favourite with everyone.',
-            rating: <Rating
-               showRating fractions={1} readonly={true} startingValue={4.5} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
-              />,
-              button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View" ></Button>
-          },
-          {
-              name: 'Coke',
-              price: "$2",
-              avatar_url: 'https://marfast.co.uk/media/catalog/product/cache/23c55bb1d0ab6576cb4fcfaed504ce75/c/o/coke-330ml.jpg',
-              description: 'A classic, since 1886. Enjoy it with a meal or on its own as a refreshing drink.',
-              rating: <Rating
-                 showRating fractions={1} readonly={true} startingValue={4.3} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
-                />,
-                button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View" ></Button>
-            }
+        }
       ]
     return (
         <ScrollView>
@@ -72,11 +50,12 @@ export default function FoodPanelInfo({ restoName }: { restoName: string }) {
                 <ListItem.Subtitle>{l.rating}</ListItem.Subtitle>
                 <ListItem.Subtitle>{l.description}</ListItem.Subtitle>
                 </ListItem.Content>
-                {l.button}
             </ListItem>
             ))
-            }
             
+            }
+            <Button buttonStyle={{backgroundColor:'#f7b307', marginTop:20, marginLeft:10, marginRight:10 }} title="Submit Review" ></Button>
+
         </View>
         </ScrollView>
     

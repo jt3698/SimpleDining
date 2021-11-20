@@ -12,38 +12,49 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 
 
 
-export default function RestoPanelInfo({ restoName }: { restoName: string }) {
+export default function OrderHistory({ restoName }: { restoName: string }) {
     const list = [
         {
           name: 'McDonald\'s',
+          total_Price: '$18',
           avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-          tags: 'Western, Fast Food',
+          time_of_order:'20/11/2021 4:26 P.M',
           rating: <Rating
-            showRating fractions={1} readonly={true} startingValue={3.9} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>,
+            showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>,
+            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" ></Button>
             
         },
         {
           name: 'KFC',
+          total_Price: '$32',
           avatar_url: 'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/v1488265976/k2htrr9z4vsxkjbthskk.png',
-          tags: 'Western, Fast Food',
+          time_of_order:'20/11/2021 4:26 P.M',
           rating: <Rating
-             showRating fractions={1} readonly={true} startingValue={4.1} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}
-            />,        },
+             showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}
+            />,
+            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" ></Button>
+        },
         {
-            name: 'Bakmi GM',
-            avatar_url: 'https://www.seekpng.com/png/detail/223-2236625_bakmi-gm.png',
-            tags: 'Asian',
+            name: 'McDonald\'s',
+            total_Price: '$15',
+            avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
+            time_of_order:'20/11/2021 4:26 P.M',
             rating: <Rating
-               showRating fractions={1} readonly={true} startingValue={4.5} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
+               showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
               />,
+              button:  <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" ></Button>
+
           },
           {
-              name: 'HokBen',
-              avatar_url: 'https://upload.wikimedia.org/wikipedia/en/0/02/HokBen_Logo.jpg',
-              tags: 'Asian',
+              name: 'Bakmi GM',
+              total_Price: '$19',
+              avatar_url: 'https://www.seekpng.com/png/detail/223-2236625_bakmi-gm.png',
+              time_of_order:'20/11/2021 4:26 P.M',
               rating: <Rating
-                 showRating fractions={1} readonly={true} startingValue={4.3} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
+                 showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
                 />,
+                button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" ></Button>
+
             }
       ]
     return (
@@ -57,10 +68,12 @@ export default function RestoPanelInfo({ restoName }: { restoName: string }) {
                 <View style={styles.subtitleView}>
                     <ListItem.Title>{l.name}</ListItem.Title>
                 </View>
-                <ListItem.Subtitle>{l.tags}</ListItem.Subtitle>
+                <ListItem.Subtitle>{l.total_Price}</ListItem.Subtitle>
+                <ListItem.Subtitle>{l.time_of_order}</ListItem.Subtitle>
+                <Text>Leave a Review!</Text>
                 <ListItem.Subtitle>{l.rating}</ListItem.Subtitle>
                 </ListItem.Content>
-                <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Order" ></Button>
+                {l.button}
             </ListItem>
             ))
             }
