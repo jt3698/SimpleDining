@@ -10,6 +10,7 @@ import FoodPanelInfo from '../components/FoodPanelInfo';
 import FoodDetail from '../components/FoodDetail';
 import OrderHistory from '../components/OrderHistory';
 import ReviewFood from '../components/ReviewFood';
+import ViewCart from '../components/ViewCart';
 
 export default function BrowseRestosPage({ navigation }: RootTabScreenProps<'BrowseRestos'>) {
   return (
@@ -19,7 +20,7 @@ export default function BrowseRestosPage({ navigation }: RootTabScreenProps<'Bro
       <RestoPanelInfo restoName ="McDonald's"/>
 
       {/* Code below was used to debug */}
-      {/* <ReviewFood restoName = "Mcdonakds"/> */}
+      {/* <ViewCart restoName = "Mcdonakds"/> */}
     </View>
   );
 }
