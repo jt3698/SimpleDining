@@ -8,13 +8,14 @@ import RestoPanelInfo from '../components/RestoPanelInfo';
 import { SearchBar } from 'react-native-elements';
 import FoodPanelInfo from '../components/FoodPanelInfo';
 import FoodDetail from '../components/FoodDetail';
+import OrderHistory from '../components/OrderHistory';
 
 export default function BrowseRestosPage({ navigation }: RootTabScreenProps<'BrowseRestos'>) {
   return (
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       {/* INSERT SCROLLBAR HERE LATER */}
-      <FoodDetail restoName="McDonald's"/>
+      <RestoPanelInfo restoName ="McDonald's"/>
     </View>
   );
 }

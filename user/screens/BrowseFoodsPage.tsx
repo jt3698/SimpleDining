@@ -6,13 +6,15 @@ import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import RestoPanelInfo from '../components/RestoPanelInfo';
 import { SearchBar } from 'react-native-elements';
+import FoodPanelInfo from '../components/FoodPanelInfo';
+import FoodDetail from '../components/FoodDetail';
 
 export default function BrowseFoodsPage({ navigation }: RootTabScreenProps<'BrowseFood'>) {
   return (
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       {/* INSERT SCROLLBAR HERE LATER */}
-      <RestoPanelInfo restoName="McDonald's"/>
+      <FoodPanelInfo restoName="McDonald's"/>
     </View>
   );
 }

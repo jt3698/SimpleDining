@@ -2,7 +2,7 @@ import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import {Card} from 'react-native-elements';
-import { Button } from 'react-native-elements/dist/buttons/Button';
+import { Button } from 'react-native-elements';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 import Colors from '../constants/Colors';
@@ -23,7 +23,7 @@ export default function FoodPanelInfo({ restoName }: { restoName: string }) {
           description: 'Two 100% beef patties, a slice of cheese, lettuce, onion and pickles. And the sauce. That unbeatable, tasty Big Mac® sauce. You know you want to.      ',
           rating: <Rating
             showRating fractions={1} readonly={true} startingValue={4.2} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>,
-            button: <Button title="Add to Cart" style={{paddingVertical: 10}}/>
+            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View" ></Button>
             
         },
         {
@@ -34,7 +34,7 @@ export default function FoodPanelInfo({ restoName }: { restoName: string }) {
           rating: <Rating
              showRating fractions={1} readonly={true} startingValue={4.1} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}
             />,
-            button: <Button title="Solid button" buttonStyle={{backgroundColor: 'red'}}/>
+            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View" ></Button>
         },
         {
             name: '6 piece McNuggets',
@@ -44,17 +44,17 @@ export default function FoodPanelInfo({ restoName }: { restoName: string }) {
             rating: <Rating
                showRating fractions={1} readonly={true} startingValue={4.5} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
               />,
-              button: <Button title="Outline button" style={{paddingVertical: 10}}/>
+              button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View" ></Button>
           },
           {
               name: 'Coke',
               price: "$2",
-              avatar_url: 'https://www.mcdonalds.com/is/image/content/dam/uk/nfl/nutrition/nfl-product/product/products/mcdonalds-Coca-Cola-Small.jpg?$Product_Desktop$',
+              avatar_url: 'https://marfast.co.uk/media/catalog/product/cache/23c55bb1d0ab6576cb4fcfaed504ce75/c/o/coke-330ml.jpg',
               description: 'A classic, since 1886. Enjoy it with a meal or on its own as a refreshing drink.',
               rating: <Rating
                  showRating fractions={1} readonly={true} startingValue={4.3} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
                 />,
-                button: <Button title="Outline button" style={{paddingVertical: 10}}/>
+                button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View" ></Button>
             }
       ]
     return (
@@ -71,8 +71,8 @@ export default function FoodPanelInfo({ restoName }: { restoName: string }) {
                 <ListItem.Subtitle>{l.price}</ListItem.Subtitle>
                 <ListItem.Subtitle>{l.rating}</ListItem.Subtitle>
                 <ListItem.Subtitle>{l.description}</ListItem.Subtitle>
-                <ListItem.ButtonGroup>{l.button}</ListItem.ButtonGroup>
                 </ListItem.Content>
+                {l.button}
             </ListItem>
             ))
             }
