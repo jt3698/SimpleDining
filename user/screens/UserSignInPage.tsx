@@ -16,11 +16,8 @@ export default function BrowseRestosPage({ navigation }: RootTabScreenProps<'Bro
   return (
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      {/* INSERT SCROLLBAR HERE LATER */}
-      {/* <RestoPanelInfo restoName ="McDonald's"/> */}
+        
 
-      {/* Code below was used to debug */}
-      <ViewCart restoName = "Mcdonakds"/>
     </View>
   );
 }
