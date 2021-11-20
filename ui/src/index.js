@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import MainWrapper from './components/MainWrapper';
+import TablesPage from './pages/TablesPage';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -14,9 +15,10 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route path="/" element={<MainWrapper />}>
           <Route path="login" element={<LoginPage />}/>
+          <Route path="tables" element={<TablesPage />}/>
         </Route>
         {/* default route */}
-        <Route path="*" element={<Navigate to="login" />} />
+        <Route path="*" element={<Navigate to="tables" />} />
       </Routes>
     </React.StrictMode>
   </BrowserRouter>,
