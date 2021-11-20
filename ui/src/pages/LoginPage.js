@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -34,7 +34,7 @@ const StyledInput = styled.input`
   outline: none;
 `;
 
-const StyledForget = styled.a`
+const StyledForget = styled(Link)`
 	width: 100%;
 	text-align: right;
 	color: inherit;
@@ -43,7 +43,9 @@ const StyledForget = styled.a`
 const StyledButton = styled.button`
   width: 50%;
 	font-size: 1.5rem;
+	cursor: pointer;
 `;
+
 const StyledRegister = styled.div`
 
 `
@@ -63,6 +65,7 @@ const LoginPage = (props) => {
 		event.preventDefault();
 
 		if(isValid(inputEmail.current.value, inputPassword.current.value)){
+			localStorage.setItem('login', 'true')
 			navigate("/tables");
 		}
 	}
@@ -82,9 +85,9 @@ const LoginPage = (props) => {
 						placeholder="Password"
 						ref={inputPassword}
 					/>
-					<StyledForget href="/password-recovery">Forgot Password?</StyledForget>
+					<StyledForget to="/password-recovery">Forgot Password?</StyledForget>
 					<StyledButton type="submit">Login</StyledButton>
-					<StyledRegister>Or register your business <a href="register">here</a></StyledRegister>
+					<StyledRegister>Or register your business <Link to="/register">here</Link></StyledRegister>
 				</StyledForm>
 			</PageWrapper>
 		</React.Fragment>
