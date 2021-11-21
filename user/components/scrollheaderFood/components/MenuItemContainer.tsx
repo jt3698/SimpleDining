@@ -51,6 +51,7 @@ export default ({ navigation, menuItem, fixedQty }: MenuItemProps) => {
           }
           {fixedQty &&
           <View style={styles.horizontalContainerNoFlex}>
+            <Text style={styles.padrightpluswrapper}>${menuItem.price * fixedQty}</Text>
             <View style={styles.qtyContainer}>
               <Text style={styles.qty}>{fixedQty}</Text>
             </View>

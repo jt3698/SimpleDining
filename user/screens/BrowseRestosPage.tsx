@@ -33,7 +33,7 @@ const album: AlbumModel = {
       tags: 'Western, Fast Food',
       rating: 4,
       time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      address: "260 Blvd St, Waterloo"
     },
     {
       name: 'KFC',
@@ -41,15 +41,15 @@ const album: AlbumModel = {
       tags: 'Western, Fast Food',
       rating: 2.9,
       time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      address: "270 Blvd St, Waterloo"
     },
     {
-      name: 'Bakmi GM',
-      avatar_url: 'https://www.seekpng.com/png/detail/223-2236625_bakmi-gm.png',
-      tags: 'Asian',
-      rating: 4.3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      name: 'Don\'s Japanese',
+      avatar_url: 'https://pbs.twimg.com/profile_images/880230764457193473/G0NpHblC_400x400.jpg',
+      tags: 'Japanese',
+      rating: 4.6,
+      time: "11:00AM to 11PM",
+      address: "280 Blvd St, Waterloo"
     },
     {
       name: 'HokBen',

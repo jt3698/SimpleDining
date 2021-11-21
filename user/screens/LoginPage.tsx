@@ -92,9 +92,7 @@ export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'
       <View style={styles.content}>
         <Image
           style={styles.logo}
-          source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Logo_TV_2015.svg/1200px-Logo_TV_2015.svg.png',
-          }}>
+          source={require('../assets/images/logo.png')}>
         </Image>
         <Text style={styles.title}>Log In</Text>
         <TextInput
@@ -181,8 +179,8 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   logo: {
-    width: 66,
-    height: 58,
+    width: 75,
+    height: 75,
   },
   input: {
     width: 250,

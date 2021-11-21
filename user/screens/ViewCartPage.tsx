@@ -11,6 +11,7 @@ import { Button } from 'react-native';
 import axios from 'axios';
 import MenuItemContainer from '../components/scrollheaderFood/components/MenuItemContainer';
 import { MenuItem } from '../components/scrollheaderFood/components/Model';
+import Navigation from '../navigation';
 
 const list = [
   {
@@ -34,17 +35,6 @@ const order = {
 }
 
 const API_URL = 'http://45.79.230.215/';
-const submitOrder = async ()=>{
-  // console.log("in submit")
-  try{
-    const response = await axios.post(API_URL+"orders/", order);
-    // const response = await axios.get(API_URL+'ping/')
-    console.log(response.data)
-  }
-  catch (err){
-    console.log(err)
-  }
-}
 
 const menuItems: MenuItem[] = [
   {
@@ -71,6 +61,21 @@ const menuItems: MenuItem[] = [
 ]
 
 export default function ViewCartPage({ navigation }: RootTabScreenProps<'ViewCarts'>) {
+  const submitOrder = async ()=>{
+    // console.log("in submit")
+    try{
+      const response = await axios.post(API_URL+"orders/", order);
+      // const response = await axios.get(API_URL+'ping/')
+      console.log(response.data)
+    }
+    catch (err){
+      console.log(err)
+    }
+    navigation.navigate('Root')
+  }
+
+  const totalPrice = 58
+
   return (
     <View style={styles.container}>
       <View style={styles.flex}>
@@ -79,6 +84,7 @@ export default function ViewCartPage({ navigation }: RootTabScreenProps<'ViewCar
         <MenuItemContainer menuItem={menuItems[2]} navigation={navigation} fixedQty={2}></MenuItemContainer>
       </View>
       <View>
+        <Text style={styles.big}>Total Price: ${totalPrice}</Text>
         <Button
           title="Submit Order"
           onPress={submitOrder}
@@ -95,6 +101,16 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
+  },
+  big: {
+    fontSize: 20,
+    fontWeight: '700',
+    fontFamily: 'sans-serif-light',
+
+    alignContent: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    padding: 20,
   },
   title: {
     fontSize: 20,
