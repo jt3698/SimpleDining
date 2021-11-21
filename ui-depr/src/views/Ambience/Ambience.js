@@ -13,7 +13,7 @@ const PageWrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-	width: 100%;
+	width: 80%;
 	position:relative;
 `
 const StyledImage = styled.img`
@@ -46,6 +46,10 @@ const RowWrapper = styled.div`
 	width:100%;
 	gap:10px;
 `
+const StyledTitle = styled.h1`
+	font-size: 5rem;
+`
+
 const Ambience = () => {
 
   const selected = "Ambience"
@@ -133,6 +137,7 @@ const Ambience = () => {
 
   return (
     <PageWrapper>
+			<StyledTitle> Don's Japanese </StyledTitle>
 	<ImageWrapper>
 		<StyledImage src={floorPlan} />
 		{heatProps["Locations"].map((props,idx)=>

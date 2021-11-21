@@ -15,17 +15,17 @@ import Navigation from '../navigation';
 
 const list = [
   {
-    Name: 'Big Mac',
-    Price: "$10",
+    Name: 'Gyudon',
+    Price: "$16",
     Avatar_url: 'https://www.mcdonalds.com/is/image/content/dam/usa/nfl/nutrition/items/hero/desktop/t-mcdonalds-Big-Mac.jpg',
     Quantity: "1",
     
   },
   {
-    Name: 'Fillet-O-Fish',
-    Price: "$8",
+    Name: 'Salmon Sushi Roll',
+    Price: "$21",
     Avatar_url: 'https://www.mcdonalds.com/is/image/content/dam/usa/nfl/nutrition/items/hero/desktop/t-mcdonalds-Filet-O-Fish.png',
-    Quantity: "1",
+    Quantity: "2",
   }
 ]
 const order = {
