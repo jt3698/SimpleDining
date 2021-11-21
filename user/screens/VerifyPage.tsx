@@ -8,7 +8,6 @@ import RestoPanelInfo from '../components/RestoPanelInfo';
 import { Button, SearchBar, Icon } from 'react-native-elements';
 import PhoneInput from "react-native-phone-number-input";
 import axios from 'axios';
-import * as fs from 'fs';
 
 export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPage'>) {
   const [value, setValue] = React.useState("");
