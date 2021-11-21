@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { HashRouter, Route, Switch, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
 
 const loading = (
@@ -12,11 +12,7 @@ const loading = (
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 
 const App = () => {
-  let navigate = useNavigate();
 
-  useEffect(() => {
-    navigate("/login");
-  }, [])
 
   return (
     <HashRouter>

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import LoginPage from 'src/views/LoginPage/LoginPage'
 import {
   TheContent,
   TheSidebar,
@@ -7,6 +8,11 @@ import {
 } from './index'
 
 const TheLayout = () => {
+  const [login, setLogin] = useState(true)
+  
+  if(login){
+    return <LoginPage onLogin={()=>setLogin(false)} />
+  }
 
   return (
     <div className="c-app c-default-layout">
