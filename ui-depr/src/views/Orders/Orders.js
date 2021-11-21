@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getFilteredOrders, orderFilter } from "../api";
-import TablePopup from "../components/TablePopup";
-import floorPlan from '../images/floorplan.jpg'
-import notificationIcon from '../images/notification-icon.png'
+import { getFilteredOrders, orderFilter } from "../../api";
+import TablePopup from "../../components/TablePopup";
+import floorPlan from '../../images/floorplan.jpg'
+import notificationIcon from '../../images/notification-icon.png'
 import { styled as mat_styled } from '@mui/material/styles';
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
@@ -14,21 +14,6 @@ const PageWrapper = styled.div`
   align-items: center;
   flex-direction: column;
 	margin-bottom: 10%;
-`;
-
-const ButtonsWrapper = mat_styled(ToggleButtonGroup)`
-	width: 60%;
-	display: flex;
-	align-items: center;
-	flex-direction: row;
-	justify-content: center;
-`;
-
-const StyledButton = mat_styled(ToggleButton)`
-	width: 30%;
-	line-height: 50%;
-	padding: 20px;
-	box-sizing: border-box;
 `;
 
 const ImageWrapper = styled.div`
@@ -60,10 +45,8 @@ const StyledNotif = styled.img`
 	top: 0px;
 	left: 80%;
 `;
+const Orders = () => {
 
-const TablesPage = (props) => {
-	
-	const [selected, setSelected] = useState("Food")
 	const [showPopup, setShowPopup] = useState(-1)
 	const [showNotif, setShowNotif] = useState(Array(5).fill(0))
 	const [orders, setOrders] = useState([])
@@ -91,7 +74,7 @@ const TablesPage = (props) => {
 		}
 	},[orders, showNotif])
 
-	// TODO get heatprops and image from backend?
+  // TODO get heatprops and image from backend?
 	const heatProps = {
 		"Locations": [
 			{diameter: "15%", top: "50%", left: "5%"},
@@ -105,59 +88,15 @@ const TablesPage = (props) => {
 			{diameter: "5%",  top: "40.5%", left: "41.5%"},
 			{diameter: "5%",  top: "40.5%", left: "47%"},
 			{diameter: "5%",  top: "40.5%", left: "52.5%"},
-		],
-		"Food": [
-			"#38761d",
-			"#38761d",
-			"#38761d",
-			"#38761d",
-			"#38761d",
-			"#cf2a27",
-			"#ff9900",
-			"#ff9900",
-			"#38761d",
-			"#ff9900",
-			"#ff9900",
-		],
-		"Service": [
-			"#38761d",
-			"#38761d",
-			"#ff9900",
-			"#cf2a27",
-			"#38761d",
-			"#ff9900",
-			"#ff9900",
-			"#38761d",
-			"#ff9900",
-			"#38761d",
-			"#ff9900",
-		],
-		"Ambience": [
-			"#ff9900",
-			"#38761d",
-			"#38761d",
-			"#38761d",
-			"#cf2a27",
-			"#cf2a27",
-			"#cf2a27",
-			"#ff9900",
-			"#ff9900",
-			"#ff9900",
-			"#38761d",
-		],
+		]
 	}
 
-	return (
-		<PageWrapper>
-			<ButtonsWrapper>
-				<StyledButton highlight={selected==="Food"} onClick={()=>setSelected("Food")}>Food</StyledButton>
-				<StyledButton highlight={selected==="Service"} onClick={()=>setSelected("Service")}> Service</StyledButton>
-				<StyledButton highlight={selected==="Ambience"} onClick={()=>setSelected("Ambience")}>Ambience</StyledButton>
-			</ButtonsWrapper>
+  return (
+    <PageWrapper>
 			<ImageWrapper>
 				<StyledImage src={floorPlan} />
 				{heatProps["Locations"].map((props,idx)=>
-					<StyledTables key={idx} onClick={()=>setShowPopup(idx)} {...props} color={heatProps[selected][idx]}>
+					<StyledTables key={idx} onClick={()=>setShowPopup(idx)} {...props} >
 						{showNotif[idx]>0 && <StyledNotif src={notificationIcon} />}
 					</StyledTables>
 				)}
@@ -170,7 +109,7 @@ const TablesPage = (props) => {
 
 			</ImageWrapper>
 		</PageWrapper>
-	)
+  )
 }
 
-export default TablesPage;
+export default Orders
