@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import floorPlan from '../../images/floorplan.jpg'
+import {CCard, CCardBody, CCardTitle, CCardSubtitle, CCardText} from '@coreui/react'
 
 const PageWrapper = styled.div`
 	width: 100%;
@@ -12,7 +13,7 @@ const PageWrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-	width: 60%;
+	width: 100%;
 	position:relative;
 `
 const StyledImage = styled.img`
@@ -30,6 +31,22 @@ const StyledTables = styled.div`
 	position: absolute;
 	top: ${props => props.top};
 	left: ${props => props.left};
+`
+
+const ReviewWrapper = styled.div`
+  width:100%;
+	margin-top:5%;
+`
+const StyledHeading = styled.h1`
+	
+`
+
+const RowWrapper = styled.div`
+	display:flex;
+	flex-direction:row;
+	
+	width:100%;
+	gap:10px;
 `
 
 const Service = () => {
@@ -92,6 +109,35 @@ const Service = () => {
 		],
 	}
 
+	const serviceReviews = [
+    {
+      title: "Don",
+      subtitle: "⭐⭐⭐⭐⭐",
+      text: "Very nice people"
+    },
+	{
+		title: "Steve",
+		subtitle: "⭐⭐⭐★★",
+		text: "Service was ok"
+	},
+	{
+		title: "Kevin",
+      subtitle: "⭐★★★★",
+      text: "I was spat on"
+	}
+  ]
+	const CCCard = ({review}) =>{
+		return (
+			<CCard style={{flex: "1"}}>
+			<CCardBody>
+				<CCardTitle>{review.title}</CCardTitle>
+				<CCardSubtitle>{review.subtitle}</CCardSubtitle>
+		<CCardText>{review.text}</CCardText>
+			</CCardBody>
+		</CCard>
+		)
+	}
+
   return (
     <PageWrapper>
 			<ImageWrapper>
@@ -100,8 +146,20 @@ const Service = () => {
 					<StyledTables key={idx} {...props} color={heatProps[selected][idx]}>
 					</StyledTables>
 				)}
-
 			</ImageWrapper>
+
+      <ReviewWrapper>
+        <StyledHeading>Service Reviews</StyledHeading>
+				{serviceReviews.map((review, idx)=>{
+					if(idx%2===1)return null;
+					return (
+						<RowWrapper key={idx}>
+							<CCCard review={serviceReviews[idx]}></CCCard>
+							{idx+1 < serviceReviews.length && <CCCard review={serviceReviews[idx+1]}></CCCard>}
+						</RowWrapper>
+					)
+				})}
+      </ReviewWrapper>
 		</PageWrapper>
   )
 }

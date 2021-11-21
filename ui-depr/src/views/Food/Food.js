@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import floorPlan from '../../images/floorplan.jpg'
+import {CCard, CCardBody, CCardTitle, CCardSubtitle, CCardText} from '@coreui/react'
 
 const PageWrapper = styled.div`
 	width: 100%;
@@ -12,7 +13,7 @@ const PageWrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-	width: 60%;
+	width: 100%;
 	position:relative;
 `
 const StyledImage = styled.img`
@@ -32,6 +33,20 @@ const StyledTables = styled.div`
 	left: ${props => props.left};
 `
 
+const ReviewWrapper = styled.div`
+  width:100%;
+	margin-top:5%;
+`
+const StyledHeading = styled.h1`
+
+`
+const RowWrapper = styled.div`
+	display:flex;
+	flex-direction:row;
+	
+	width:100%;
+	gap:10px;
+`
 const Food = () => {
 
   const selected = "Food"
@@ -92,6 +107,40 @@ const Food = () => {
 		],
 	}
 
+  const foodReviews = [
+    {
+      title: "Don",
+	  foodItem: "Gyudon",
+      subtitle: "⭐⭐⭐⭐★",
+      text: "It was good"
+    },
+	{
+		title: "Steve",
+		foodItem: "Salmon Sushi",
+		subtitle: "⭐⭐⭐⭐⭐",
+		text: "My kids love it"
+	},
+	{
+		title: "Kevin",
+		foodItem: "Kobe beef",
+		subtitle: "⭐⭐⭐★★",
+		text: "good but overpriced"
+	}
+  ]
+	const CCCard = ({review}) =>{
+		return (
+			<CCard style={{flex: "1"}}>
+			<CCardBody>
+				<CCardTitle>{review.title}</CCardTitle>
+				<CCardSubtitle>{review.subtitle}</CCardSubtitle>
+				<CCardText>Review on: {review.foodItem}</CCardText>
+		<CCardText>{review.text}</CCardText>
+			</CCardBody>
+		</CCard>
+		)
+	}
+
+
   return (
     <PageWrapper>
 			<ImageWrapper>
@@ -100,8 +149,20 @@ const Food = () => {
 					<StyledTables key={idx} {...props} color={heatProps[selected][idx]}>
 					</StyledTables>
 				)}
-
 			</ImageWrapper>
+
+      <ReviewWrapper>
+        <StyledHeading>Food Reviews</StyledHeading>
+				{foodReviews.map((review, idx)=>{
+					if(idx%2===1)return null;
+					return (
+						<RowWrapper key={idx}>
+							<CCCard review={foodReviews[idx]}></CCCard>
+							{idx+1 < foodReviews.length && <CCCard review={foodReviews[idx+1]}></CCCard>}
+						</RowWrapper>
+					)
+				})}
+      </ReviewWrapper>
 		</PageWrapper>
   )
 }

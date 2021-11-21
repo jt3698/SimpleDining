@@ -101,8 +101,8 @@ const TablePopup = (props)=>{
 				outline: 'none',
 				padding: '20px',
 				position: "absolute",
-				left: "20%",
-				top: "10%",
+				left: "30%",
+				top: "15%",
 			}
 		}}>
 			<Wrapper>

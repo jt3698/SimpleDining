@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getFilteredOrders, orderFilter } from "../../api";
+import { getOrders } from "../../api";
 import TablePopup from "../../components/TablePopup";
 import floorPlan from '../../images/floorplan.jpg'
 import notificationIcon from '../../images/notification-icon.png'
-import { styled as mat_styled } from '@mui/material/styles';
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import {CCard, CCardBody, CCardTitle, CCardSubtitle, CCardText} from '@coreui/react'
 
 const PageWrapper = styled.div`
 	width: 100%;
@@ -17,7 +16,7 @@ const PageWrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-	width: 60%;
+	width: 100%;
 	position:relative;
 `
 const StyledImage = styled.img`
@@ -39,12 +38,31 @@ const StyledTables = styled.div`
 `
 
 const StyledNotif = styled.img`
-	width: 30px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 	position: absolute;
-	top: 0px;
-	left: 80%;
+	top: 30%;
+	left: 30%;
+	color: ;
 `;
+
+const OrdersWrapper = styled.div`
+  width:100%;
+	margin-top:5%;
+`
+const StyledHeading = styled.h1`
+	
+`
+
+const RowWrapper = styled.div`
+	display:flex;
+	flex-direction:row;
+	
+	width:100%;
+	gap:10px;
+`
+
+
 const Orders = () => {
 
 	const [showPopup, setShowPopup] = useState(-1)
@@ -52,12 +70,12 @@ const Orders = () => {
 	const [orders, setOrders] = useState([])
 	
 	useEffect(()=>{
-		getFilteredOrders(orderFilter("Pending")).then(order=>setOrders(order))
+		getOrders().then(order=>setOrders(order))
 	},[])
 
 	useEffect(()=>{
 		const intervalID = setInterval(async ()=>{
-			const newOrders = await getFilteredOrders(orderFilter("Pending"));
+			const newOrders = await getOrders();
 			const newShowNotif = showNotif.slice()
 			if(orders !== newOrders){
 				newOrders.forEach(element => {
@@ -90,6 +108,19 @@ const Orders = () => {
 			{diameter: "5%",  top: "40.5%", left: "52.5%"},
 		]
 	}
+	
+	const CCCard = ({order}) =>{
+		console.log(order)
+		return (
+			<CCard style={{flex: "1"}}>
+			<CCardBody>
+				<CCardTitle>Order #{order.ID}</CCardTitle>
+				<CCardSubtitle>{order.name}</CCardSubtitle>
+				<CCardText>Table Number: {order.Table_number}</CCardText>
+			</CCardBody>
+		</CCard>
+		)
+	}
 
   return (
     <PageWrapper>
@@ -108,6 +139,18 @@ const Orders = () => {
 					}} />}
 
 			</ImageWrapper>
+			<OrdersWrapper>
+        <StyledHeading>Orders</StyledHeading>
+				{orders.map((order, idx)=>{
+					if(idx%2===1)return null;
+					return (
+						<RowWrapper key={idx}>
+							<CCCard order={orders[idx]}></CCCard>
+							{idx+1 < orders.length && <CCCard order={orders[idx+1]}></CCCard>}
+						</RowWrapper>
+					)
+				})}
+      </OrdersWrapper>
 		</PageWrapper>
   )
 }
