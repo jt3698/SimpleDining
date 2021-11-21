@@ -26,7 +26,7 @@ const linking: LinkingOptions<RootStackParamList> = {
               OrderHistoryPage: 'orderHistory',
             },
           },
-          BrowseFood: {
+          browseFood: {
             screens: {
               BrowseFoodsPage: 'browseFood',
             },

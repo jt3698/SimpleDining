@@ -39,7 +39,7 @@ const album: AlbumModel = {
       name: 'KFC',
       avatar_url: 'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/v1488265976/k2htrr9z4vsxkjbthskk.png',
       tags: 'Western, Fast Food',
-      rating: 4.5,
+      rating: 2.9,
       time: "11:30AM to 11PM",
       address: "290 Blvd St, Waterloo"
     },

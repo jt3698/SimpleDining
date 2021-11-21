@@ -47,6 +47,7 @@ function RootNavigator() {
       <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }} />
       <Stack.Screen name="Verify" component={VerifyPage} options={{ headerShown: false }} />
       <Stack.Screen name="BrowseFood" component={BrowseFoodsPage} options={{ headerShown: false }} />
+      <Stack.Screen name="BrowseRestos" component={BrowseRestosPage} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -68,7 +69,8 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="BrowseRestos"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: Colors[colorScheme].tint, 
+        headerShown: false,
       }}>
       <BottomTab.Screen
         name="BrowseRestos"
@@ -76,20 +78,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'BrowseRestos'>) => ({
           title: 'Browse Restaurants',
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
         })}
       />
       <BottomTab.Screen
