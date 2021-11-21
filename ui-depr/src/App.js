@@ -12,8 +12,6 @@ const loading = (
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 
 const App = () => {
-
-
   return (
     <HashRouter>
         <React.Suspense fallback={loading}>

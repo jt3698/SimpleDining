@@ -71,9 +71,10 @@ const StyledCancel = mat_styled(Button)`
 `
 
 const TablePopup = (props)=>{
-	const {orders, number, onRequestClose} = props;
-	const filtered = orders.filter(x=>x.Table_number===number)
-	const order = (filtered.some(x=>x.Status==="Pending")?filtered.find(x=>x.Status==="Pending"):filtered.find(x=>x.Status==="In Progress"));
+	const {number, onRequestClose, order} = props;
+	// const filtered = orders.filter(x=>x.Table_number===number)
+	// const order = (filtered.some(x=>x.Status==="Pending")?filtered.find(x=>x.Status==="Pending"):filtered.find(x=>x.Status==="In Progress"));
+	// const order=props.order;
 	if(!order){
 		onRequestClose()
 		return null;

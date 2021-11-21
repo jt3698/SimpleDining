@@ -83,6 +83,7 @@ const LoginPage = (props) => {
 					/>
 					<StyledInput
 						id="password"
+						type="password"
 						placeholder="Password"
 						ref={inputPassword}
 					/>

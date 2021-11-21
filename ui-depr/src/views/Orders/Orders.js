@@ -71,6 +71,7 @@ const Orders = () => {
 	const [showPopup, setShowPopup] = useState(-1)
 	const [showNotif, setShowNotif] = useState(Array(5).fill(0))
 	const [orders, setOrders] = useState([])
+	const [orderToOpen, setOrderToOpen] = useState(null)
 	
 	useEffect(()=>{
 		getOrders().then(order=>setOrders(order))
@@ -82,8 +83,10 @@ const Orders = () => {
 			const newShowNotif = showNotif.slice()
 			if(orders !== newOrders){
 				newOrders.forEach(element => {
-					if(!orders.some(x=>x.ID === element.ID))
+					if(!orders.some(x=>x.ID === element.ID)){
 						newShowNotif[element.Table_number] += 1;
+						setOrderToOpen(element)
+					}
 				});
 				setShowNotif(newShowNotif)
 				setOrders(newOrders);
@@ -135,7 +138,7 @@ const Orders = () => {
 						{showNotif[idx]>0 && <StyledNotif src={notificationIcon} />}
 					</StyledTables>
 				)}
-				{showPopup !== -1 && <TablePopup orders={orders} number={showPopup} isOpen={showPopup !== -1} onRequestClose={()=>{
+				{showPopup !== -1 && <TablePopup order={orderToOpen} number={showPopup} isOpen={showPopup !== -1} onRequestClose={()=>{
 					setShowPopup(-1)
 					const newShowNotif = showNotif.slice()
 					newShowNotif[showPopup]=0;
