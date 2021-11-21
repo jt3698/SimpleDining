@@ -89,6 +89,14 @@ const album: AlbumModel = {
       rating: 5,
       time: "11:30AM to 11PM",
       address: "290 Blvd St, Waterloo"
+    },
+    {
+      name: 'Gino\'s',
+      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
+      tags: 'Western',
+      rating: 3,
+      time: "11:30AM to 11PM",
+      address: "290 Blvd St, Waterloo"
     }
   ]
 };
