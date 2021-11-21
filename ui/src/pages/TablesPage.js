@@ -4,6 +4,8 @@ import { getFilteredOrders, orderFilter } from "../api";
 import TablePopup from "../components/TablePopup";
 import floorPlan from '../images/floorplan.jpg'
 import notificationIcon from '../images/notification-icon.png'
+import { styled as mat_styled } from '@mui/material/styles';
+import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 const PageWrapper = styled.div`
 	width: 100%;
@@ -14,7 +16,7 @@ const PageWrapper = styled.div`
 	margin-bottom: 10%;
 `;
 
-const ButtonsWrapper = styled.div`
+const ButtonsWrapper = mat_styled(ToggleButtonGroup)`
 	width: 60%;
 	display: flex;
 	align-items: center;
@@ -22,9 +24,9 @@ const ButtonsWrapper = styled.div`
 	justify-content: center;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = mat_styled(ToggleButton)`
 	width: 30%;
-	height: 50%;
+	line-height: 50%;
 	padding: 20px;
 	box-sizing: border-box;
 `;
