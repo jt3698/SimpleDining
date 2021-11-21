@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet, Image, TextInput } from 'react-native';
-import SBar  from '../components/SearchBar';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
