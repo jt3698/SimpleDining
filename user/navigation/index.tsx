@@ -25,6 +25,7 @@ import ViewCartPage from '../screens/ViewCartPage'
 
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import ReviewFoodPage from '../screens/ReviewFoodPage';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -50,6 +51,7 @@ function RootNavigator() {
       <Stack.Screen name="SignUp" component={SignUpPage} options={{ headerShown: false }} />
       <Stack.Screen name="Verify" component={VerifyPage} options={{ headerShown: false }} />
       <Stack.Screen name="BrowseFood" component={BrowseFoodsPage} options={{ headerShown: false }} />
+      <Stack.Screen name="ReviewFood" component={ReviewFoodPage} options={{ headerShown: false }} />
       <Stack.Screen name="BrowseRestos" component={BrowseRestosPage} options={{ headerShown: false }} />
       <Stack.Screen name="ViewCart" component={ViewCartPage} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />

@@ -10,9 +10,12 @@ import { Text, View } from './Themed';
 import { ListItem, Avatar } from 'react-native-elements'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
+interface OrderProps {
 
+  navigation: any;
+}
 
-export default function OrderHistory({ restoName }: { restoName: string }) {
+export default ({ navigation } : OrderProps) => {
     const list = [
         {
           name: 'McDonald\'s',
@@ -21,7 +24,7 @@ export default function OrderHistory({ restoName }: { restoName: string }) {
           time_of_order:'20/11/2021 4:26 P.M',
           rating: <Rating
             showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>,
-            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" ></Button>
+            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" onPress={() => navigation.navigate("ReviewFood")}></Button>
             
         },
         {
@@ -32,7 +35,7 @@ export default function OrderHistory({ restoName }: { restoName: string }) {
           rating: <Rating
              showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}
             />,
-            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" ></Button>
+            button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" onPress={() => navigation.navigate("ReviewFood")}></Button>
         },
         {
             name: 'McDonald\'s',
@@ -42,7 +45,7 @@ export default function OrderHistory({ restoName }: { restoName: string }) {
             rating: <Rating
                showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
               />,
-              button:  <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" ></Button>
+              button:  <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" onPress={() => navigation.navigate("ReviewFood")}></Button>
 
           },
           {

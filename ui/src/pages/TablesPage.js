@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getOrders } from "../api";
+import { getFilteredOrders, orderFilter } from "../api";
 import TablePopup from "../components/TablePopup";
 import floorPlan from '../images/floorplan.jpg'
 import notificationIcon from '../images/notification-icon.png'
+import { styled as mat_styled } from '@mui/material/styles';
+import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 const PageWrapper = styled.div`
 	width: 100%;
@@ -11,29 +13,27 @@ const PageWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-	justify-content: center;
 	margin-bottom: 10%;
 `;
 
-const ButtonsWrapper = styled.div`
-	width: 100%;
+const ButtonsWrapper = mat_styled(ToggleButtonGroup)`
+	width: 60%;
 	display: flex;
 	align-items: center;
 	flex-direction: row;
 	justify-content: center;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = mat_styled(ToggleButton)`
 	width: 30%;
-	height: 50%;
+	line-height: 50%;
 	padding: 20px;
 	box-sizing: border-box;
 `;
 
 const ImageWrapper = styled.div`
-	width: 80%;
-	height: 60%;
-	position: absolute;
+	width: 60%;
+	position:relative;
 `
 const StyledImage = styled.img`
 	width: 100%;
@@ -50,6 +50,7 @@ const StyledTables = styled.div`
 	position: absolute;
 	top: ${props => props.top};
 	left: ${props => props.left};
+	cursor: pointer;
 `
 
 const StyledNotif = styled.img`
@@ -68,12 +69,12 @@ const TablesPage = (props) => {
 	const [orders, setOrders] = useState([])
 	
 	useEffect(()=>{
-		(async ()=>setOrders(await getOrders()))()
+		getFilteredOrders(orderFilter("Pending")).then(order=>setOrders(order))
 	},[])
 
 	useEffect(()=>{
 		const intervalID = setInterval(async ()=>{
-			const newOrders = await getOrders();
+			const newOrders = await getFilteredOrders(orderFilter("Pending"));
 			const newShowNotif = showNotif.slice()
 			if(orders !== newOrders){
 				newOrders.forEach(element => {
@@ -93,11 +94,11 @@ const TablesPage = (props) => {
 	// TODO get heatprops and image from backend?
 	const heatProps = {
 		"Locations": [
-			{diameter: "15%", top: "60%", left: "5%"},
-			{diameter: "15%", top: "82%", left: "30%"},
-			{diameter: "15%", top: "82%", left: "53%"},
-			{diameter: "15%", top: "82%", left: "75%"},
-			{diameter: "15%", top: "50%", left: "75%"},
+			{diameter: "15%", top: "50%", left: "5%"},
+			{diameter: "15%", top: "72%", left: "30%"},
+			{diameter: "15%", top: "72%", left: "53%"},
+			{diameter: "15%", top: "72%", left: "75%"},
+			{diameter: "15%", top: "40%", left: "75%"},
 			// {diameter: "5%", color: "#bbb", top: "43%", left: "25%"},
 		],
 		"Food": [
@@ -125,19 +126,24 @@ const TablesPage = (props) => {
 
 	return (
 		<PageWrapper>
+			<ButtonsWrapper>
+				<StyledButton highlight={selected==="Food"} onClick={()=>setSelected("Food")}>Food</StyledButton>
+				<StyledButton highlight={selected==="Service"} onClick={()=>setSelected("Service")}> Service</StyledButton>
+				<StyledButton highlight={selected==="Ambience"} onClick={()=>setSelected("Ambience")}>Ambience</StyledButton>
+			</ButtonsWrapper>
 			<ImageWrapper>
-				<ButtonsWrapper>
-					<StyledButton highlight={selected==="Food"} onClick={()=>setSelected("Food")}>Food</StyledButton>
-					<StyledButton highlight={selected==="Service"} onClick={()=>setSelected("Service")}> Service</StyledButton>
-					<StyledButton highlight={selected==="Ambience"} onClick={()=>setSelected("Ambience")}>Ambience</StyledButton>
-				</ButtonsWrapper>
 				<StyledImage src={floorPlan} />
 				{heatProps["Locations"].map((props,idx)=>
 					<StyledTables key={idx} onClick={()=>setShowPopup(idx)} {...props} color={heatProps[selected][idx]}>
 						{showNotif[idx]>0 && <StyledNotif src={notificationIcon} />}
 					</StyledTables>
 				)}
-				{showPopup !== -1 && <TablePopup number={showPopup}/>}
+				{showPopup !== -1 && <TablePopup orders={orders} number={showPopup} isOpen={showPopup !== -1} onRequestClose={()=>{
+					setShowPopup(-1)
+					const newShowNotif = showNotif.slice()
+					newShowNotif[showPopup]=0;
+					setShowNotif(newShowNotif)
+					}} />}
 
 			</ImageWrapper>
 		</PageWrapper>

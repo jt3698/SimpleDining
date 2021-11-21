@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet, Image, TextInput } from 'react-native';
-import SBar  from '../components/SearchBar';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -40,7 +39,7 @@ export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'
         const user = userCredential.user;
         console.log("success, user", user)
         console.log(userCredential)
-        navigation.navigate('BrowseRestos')
+        navigation.navigate('Root')
     })
     .catch((error) => {
         const errorCode = error.code;

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import SBar  from '../components/SearchBar';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -16,7 +15,7 @@ export default function ReviewFoodPage({ navigation }: RootTabScreenProps<'Revie
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       {/* INSERT SCROLLBAR HERE LATER */}
-      <ReviewFood restoName ="McDonald's"/>
+      <ReviewFood {...{navigation}} />
     </View>
   );
 }
