@@ -8,38 +8,93 @@ import RestoPanelInfo from '../components/RestoPanelInfo';
 import { Button, SearchBar, Icon } from 'react-native-elements';
 import PhoneInput from "react-native-phone-number-input";
 import axios from 'axios';
+import qs from 'qs';
+import base64 from 'react-native-base64';
 
 export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPage'>) {
   const [value, setValue] = React.useState("");
   const [formattedValue, setFormattedValue] = React.useState("");
-  const [valid, setValid] = React.useState(false);
   const phoneInput = React.useRef<PhoneInput>(null);
 
-  const [error, setError] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   const [isPhoneEntered, setIsPhoneEntered] = React.useState(false);
   const [verificationCode, setVerificationCode] = React.useState('');
 
-  const twilioURI = "https://verify.twilio.com/v2/Services/"
+  const data = require('../secrets/twilio.json');// JSON.parse(fs.readFileSync('../secrets/twilio.json') as any)
+  const serviceSid = data.serviceSid
+  const accountSid = data.accountSid
+  const authToken = data.authToken
+  const twilioURI = `https://verify.twilio.com/v2/Services/${serviceSid}/`
 
-  const sendCode = () => {
-    if (!valid) {
-      setError(true);
+  const sendCode = async () => {
+    if (!phoneInput.current?.isValidNumber(value)) {
+      setErrorMessage('Invalid Phone Number');
       setIsPhoneEntered(false);
       return;
     }
 
+    console.log('send code')
     const phoneNumber = formattedValue;
+    const URI = twilioURI+'Verifications'
+    console.log('twilio uri', URI)
+
+    const authHeader = 'Basic ' + base64.encode(`${accountSid}:${authToken}`);
     // send http req to twilio
-    setIsPhoneEntered(true);
+    axios.post(URI, qs.stringify({
+      "To": phoneNumber,
+      "Channel": "sms",
+    }), {
+      headers: { 
+        'Authorization': authHeader,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }).then((resp) => {
+      console.log('good, resp', resp)
+      setIsPhoneEntered(true);
+    }).catch((err) => {
+      console.log('err', err)
+    })
+
   }
 
   const changePhoneNumber = () => {
     setIsPhoneEntered(false);
   }
 
-  const verifyCode = () => {
+  const verifyCode = async () => {
+    const phoneNumber = formattedValue;
     // send http req to twilio
+    const URI = twilioURI+'VerificationCheck'
+    console.log('twilio uri', URI)
+
+    const authHeader = 'Basic ' + base64.encode(`${accountSid}:${authToken}`);
+    // send http req to twilio
+    axios.post(URI, qs.stringify({
+      "To": phoneNumber,
+      "Code": verificationCode,
+    }), {
+      headers: { 
+        'Authorization': authHeader,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }).then((resp) => {
+      console.log('good, resp', resp)
+
+      if (resp.data.status == "approved") {
+        console.log('correct code')
+        navigation.navigate('Root')
+      } else {
+        console.log('wrong code')
+        setErrorMessage('Wrong Verification Code')
+      }
+    }).catch((err) => {
+      console.log('err', err)
+    })
+  }
+
+  const skipVerification = () => {
+    navigation.navigate('Root')
   }
 
   return (
@@ -53,16 +108,16 @@ export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPag
         </Image>
         <Text style={styles.title}>Verify Phone Number</Text>
 
-        {!isPhoneEntered &&
-        <View>
-          <Text>Please enter your phone number</Text>
+        {isPhoneEntered &&
+        <View style={styles.block}>
+          <Text style={styles.regular}>Please enter your phone number</Text>
           <PhoneInput
             ref={phoneInput}
             defaultValue={value}
             defaultCode="ID"
             layout="first"
             onChangeText={(text) => {
-              setError(false);
+              setErrorMessage('');
               setValue(text);
             }}
             onChangeFormattedText={(text) => {
@@ -72,21 +127,33 @@ export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPag
             withShadow
             autoFocus
           />
-          <Button style={styles.button} raised title="Verify" onPress={sendCode}></Button>
+          <Text style={styles.error}>{errorMessage}</Text>
+          <View style={styles.regular}>
+            <Button style={styles.button} raised title="Verify" onPress={sendCode}></Button>
+          </View>
         </View>
         }
 
-        {isPhoneEntered &&
-        <View>
+        {!isPhoneEntered &&
+        <View style={styles.block}>
           <Text>Please enter the verification code we sent to {formattedValue}</Text>
-          <TextInput keyboardType="numeric" value={verificationCode}></TextInput>
+          <TextInput style={styles.input} keyboardType="numeric" value={verificationCode} onChangeText={(text) => {
+            setErrorMessage('')
+            setVerificationCode(text)
+          }}></TextInput>
           <Button style={styles.button} raised title="Submit" onPress={verifyCode}></Button>
-          <Text>Didn't receive a code?</Text>
-          <Text style={styles.subtitle} onPress={sendCode}>Resend code</Text>
-          <Text style={styles.subtitle} onPress={changePhoneNumber}>Change phone number</Text>
+          <Text style={styles.error}>{errorMessage}</Text>
+          <View style={styles.regular}>
+            <Text>Didn't receive a code?</Text>
+            <Text style={styles.subtitle} onPress={sendCode}>Resend code</Text>
+            <Text style={styles.subtitle} onPress={changePhoneNumber}>Change phone number</Text>
+          </View>
         </View>
         }
           
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.subtitle} onPress={skipVerification}>Skip verification...</Text>
       </View>
     </View>
   );
@@ -119,21 +186,27 @@ const styles = StyleSheet.create({
   },
   block: {
     padding: 30,
-    alignItems: 'center',
   },
   button: {
     padding: 30,
+  },
+  error: {
+    color: 'red',
+  },
+  regular: {
+    padding: 10,
   },
   logo: {
     width: 66,
     height: 58,
   },
   input: {
-    width: 250,
+    width: 100,
     height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    alignSelf: 'center',
   },
   title: {
     fontSize: 20,

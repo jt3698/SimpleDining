@@ -15,12 +15,14 @@ declare global {
 
 export type RootStackParamList = {
   Login: undefined;
+  SignUp: undefined;
   Verify: undefined;
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
   BrowseFood: undefined;
   BrowseRestos: undefined;
+  ViewCart: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -37,8 +39,9 @@ export type RootTabParamList = {
   AccountIcon: undefined;
   AddToCart: undefined;
   ReviewFood: undefined;
-  ViewCart: undefined;
+  ViewCarts: undefined;
   LoginPage: undefined;
+  SignUpPage: undefined;
   VerifyPage: undefined;
   browseFood: undefined;
 };

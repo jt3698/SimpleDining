@@ -19,7 +19,9 @@ import LoginPage from '../screens/LoginPage';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import OrderHistoryPage from '../screens/OrderHistoryPage';
+import SignUpPage from '../screens/SignUpPage';
 import VerifyPage from '../screens/VerifyPage';
+import ViewCartPage from '../screens/ViewCartPage'
 
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -43,11 +45,13 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }} />
+      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="SignUp" component={SignUpPage} options={{ headerShown: false }} />
       <Stack.Screen name="Verify" component={VerifyPage} options={{ headerShown: false }} />
       <Stack.Screen name="BrowseFood" component={BrowseFoodsPage} options={{ headerShown: false }} />
       <Stack.Screen name="BrowseRestos" component={BrowseRestosPage} options={{ headerShown: false }} />
+      <Stack.Screen name="ViewCart" component={ViewCartPage} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
