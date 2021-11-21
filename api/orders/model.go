@@ -13,4 +13,5 @@ type Order struct {
 	ID primitive.ObjectID `bson:"_id"`
 	Items []Item `bson:"items"`
 	Table_number int `bson:"table_number"`
+	Status string `bson:"status"`
 }
