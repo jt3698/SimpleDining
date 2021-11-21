@@ -26,7 +26,7 @@ const linking: LinkingOptions<RootStackParamList> = {
               OrderHistoryPage: 'orderHistory',
             },
           },
-          BrowseFood: {
+          BrowseFoods: {
             screens: {
               BrowseFoodsPage: 'browseFood',
             },
@@ -41,7 +41,7 @@ const linking: LinkingOptions<RootStackParamList> = {
               AddToCartPage: 'ReviewFood',
             },
           },
-          ViewCart: {
+          ViewCarts: {
             screens: {
               AddToCartPage: 'ViewCart',
             },
