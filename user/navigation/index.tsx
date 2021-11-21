@@ -18,6 +18,7 @@ import LoginPage from '../screens/LoginPage';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import OrderHistoryPage from '../screens/OrderHistoryPage';
+import SignUpPage from '../screens/SignUpPage';
 import VerifyPage from '../screens/VerifyPage';
 
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
@@ -43,6 +44,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }} />
+      <Stack.Screen name="SignUp" component={SignUpPage} options={{ headerShown: false }} />
       <Stack.Screen name="Verify" component={VerifyPage} options={{ headerShown: false }} />
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />

@@ -5,8 +5,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import RestoPanelInfo from '../components/RestoPanelInfo';
-import { Button, SearchBar } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button, SearchBar, Icon } from 'react-native-elements';
 import FoodPanelInfo from '../components/FoodPanelInfo';
 import FoodDetail from '../components/FoodDetail';
 import OrderHistory from '../components/OrderHistory';
@@ -14,21 +13,40 @@ import ReviewFood from '../components/ReviewFood';
 import ViewCart from '../components/ViewCart';
 import { 
   getAuth,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
 } from "firebase/auth";
 
-export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'>) {
+export default function SignUpPage({ navigation }: RootTabScreenProps<'SignUpPage'>) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [successMessage, setSuccessMessage] = React.useState('');
 
-  const auth = getAuth()
+  const auth = getAuth();
 
   const onError = (message: string) => {
+    setSuccessMessage('');
     setErrorMessage(message);
+  }
+
+  const onSuccess = (message: string) => {
+    setSuccessMessage(message);
+  }
+
+  const getSuccessMessage = () => {
+    return <Text style={styles.success}>
+      {successMessage}
+    </Text>
+  }
+
+  const getErrorMessage = () => {
+    return <Text style={styles.error}>
+      {errorMessage}
+    </Text>
   }
 
   const logIn = () => {
@@ -40,52 +58,34 @@ export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'
         const user = userCredential.user;
         console.log("success, user", user)
         console.log(userCredential)
-        navigation.navigate('BrowseRestos')
+        navigation.navigate('Verify')
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("failed to log in through email + password, errorcode: ", errorCode, " errormsg: ", errorMessage)
-        onError('Failed to log in.')
+        onError('Failed to log in, please try again.')
     });
   }
 
-  const logInWithFacebook = () => {
-    const provider = new FacebookAuthProvider();
-    // Start a sign in process for an unauthenticated user.
-    provider.addScope('profile');
-    provider.addScope('email');
-    signInWithPopup(getAuth(), provider).catch((error) => {
+  const signUp = () => {
+    console.log("createAccount fn")
+    console.log('email, password: ', email, password)
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log("success, user", user)
+        console.log(userCredential)
+        onSuccess('Successfully created an account. Logging in..')
+        logIn()
+    })
+    .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log("failed to log in through facebook, errorcode: ", errorCode, " errormsg: ", errorMessage)
-        onError('Failed to log in.')
-      }
-    )
-  }
-
-  const logInWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    // Start a sign in process for an unauthenticated user.
-    provider.addScope('profile');
-    provider.addScope('email');
-    signInWithPopup(auth, provider).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("failed to log in through google, errorcode: ", errorCode, " errormsg: ", errorMessage)
-        onError('Failed to log in.')
-      }
-    )
-  }
-
-  const navigateToSignUpPage = () => {
-    navigation.navigate('SignUp')
-  }
-
-  const getErrorMessage = () => {
-    return <Text style={styles.error}>
-      {errorMessage}
-    </Text>
+        console.log("fail, errorcode ", errorCode, " errormsg ", errorMessage)
+        onError('Failed to create an account. Please try again.')
+    });
   }
 
   return (
@@ -97,7 +97,7 @@ export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'
             uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Logo_TV_2015.svg/1200px-Logo_TV_2015.svg.png',
           }}>
         </Image>
-        <Text style={styles.title}>Log In</Text>
+        <Text style={styles.title}>Sign Up</Text>
         <TextInput
           style={styles.input}
           onChangeText={setEmail}
@@ -112,34 +112,15 @@ export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'
           secureTextEntry={true}
         />
         <Text>
-        {errorMessage && getErrorMessage()}
+          {successMessage && getSuccessMessage()}
+          {!successMessage && errorMessage && getErrorMessage()}
         </Text>
         <View style={styles.smallblock}>
-          <Button style={styles.button} title="Log In" onPress={logIn}></Button>
+          <Button style={styles.button} title="Sign Up" onPress={signUp}></Button>
         </View>
-        <Text style={styles.subtitle}>Forgot Password?</Text>
         <View style={styles.block}>
-          <Text>Don't have account?</Text>
-          <Text style={styles.subtitle} onPress={navigateToSignUpPage}>Sign up here</Text>
-        </View>
-      </View>
-      
-      <View style={styles.footer}>
-        <Text>------- Or Login With -------</Text>
-        <View style={styles.horizontalContainer}>
-          <View style={styles.iconContainer}>
-            <Icon.Button
-              name="facebook"
-              backgroundColor="#3b5998"
-              onPress={logInWithFacebook}
-            >Facebook</Icon.Button>
-          </View>
-          <View style={styles.iconContainer}>
-            <Icon.Button
-              name="google"
-              onPress={logInWithGoogle}
-            >Google</Icon.Button>
-          </View>
+          <Text>Already have an account?</Text>
+          <Text style={styles.subtitle}>Log in here</Text>
         </View>
       </View>
     </View>
@@ -159,12 +140,15 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
   },
+  error: {
+    color: 'red',
+  },
+  success: {
+    color: 'green',
+  },
   content: {
     flex: 1,
     alignItems: 'center',
-  },
-  error: {
-    color: 'red',
   },
   footer: {
     alignItems: 'center',
@@ -205,7 +189,4 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
-  iconContainer: {
-    padding: 15
-  }
 });
