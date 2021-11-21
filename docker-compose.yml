@@ -16,7 +16,7 @@ services:
     
   ui:
     container_name: ui
-    build: ./ui
+    build: ./ui-depr
     environment:
       - CHOKIDAR_USEPOLLING=true
       - PORT=3000
@@ -26,7 +26,7 @@ services:
     ports:
       - ${REACT_APP_PORT}:3000
     volumes:
-      - './ui:/app/ui'
+      - './ui-depr:/app/ui'
       - '/app/ui/node_modules'
     links:
       - api
