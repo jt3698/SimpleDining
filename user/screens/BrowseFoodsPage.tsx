@@ -42,7 +42,7 @@ const menuItems: MenuItem[] = [
       picturePath: 'https://images.squarespace-cdn.com/content/v1/5bb430e47980b379b65a09b8/1553597266101-PK3AO9N3C4JCIDVX2WXW/IMG_20190215_160731.jpg?format=1000w',
     },
     {
-      name: 'Salmon Sushi Roll',
+      name: 'Salmon Sushi',
       price: 21,
       isThumbsUp: false,
       isChefRecommended: true,

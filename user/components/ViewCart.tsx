@@ -13,6 +13,7 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 import { Divider } from 'react-native-elements';
 
 
+
 export default function ReviewFood({ restoName }: { restoName: string }) {
     const list = [
         {

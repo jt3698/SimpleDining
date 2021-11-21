@@ -14,9 +14,10 @@ import { Button } from "react-native-elements";
 interface MenuItemProps {
   navigation: any;
   menuItem: MenuItem;
+  fixedQty?: number;
 }
 
-export default ({ navigation, menuItem }: MenuItemProps) => {
+export default ({ navigation, menuItem, fixedQty }: MenuItemProps) => {
   const [qty, setQty] = React.useState(0)
 
   const decrementQty = () => {
@@ -38,6 +39,7 @@ export default ({ navigation, menuItem }: MenuItemProps) => {
             {menuItem.isThumbsUp && <Icon size={20} style={styles.margdown} name="thumbs-up"></Icon>}
             {menuItem.isChefRecommended && <MaterialIcon size={20} style={styles.margdown} name="chef-hat"></MaterialIcon>}
           </View>
+          {!fixedQty &&
           <View style={styles.horizontalContainerNoFlex}>
             <Text style={styles.padrightpluswrapper}>${menuItem.price}</Text>
             <Text style={styles.button} onPress={decrementQty}>-</Text>
@@ -46,6 +48,14 @@ export default ({ navigation, menuItem }: MenuItemProps) => {
             </View>
             <Text style={styles.button} onPress={incrementQty}>+</Text>
           </View>
+          }
+          {fixedQty &&
+          <View style={styles.horizontalContainerNoFlex}>
+            <View style={styles.qtyContainer}>
+              <Text style={styles.qty}>{fixedQty}</Text>
+            </View>
+          </View>
+          }
         </View>
       </ImageBackground>
     </View>
@@ -56,10 +66,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-  },
-  padright: {
-    paddingRight: 6,
-    fontSize: 20,
+    width: '100%',
+    maxHeight: 70,
   },
   margdown: {
     marginTop: 4,
@@ -113,6 +121,8 @@ const styles = StyleSheet.create({
   padrightpluswrapper: {
     paddingRight: 10,
     fontSize: 20,
+    fontFamily: 'monospace',
+    fontWeight: '700',
   },
   image: {
     width: '100%',
