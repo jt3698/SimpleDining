@@ -19,19 +19,19 @@ const _nav =  [
     _tag: 'CSidebarNavItem',
     name: 'Food',
     to: '/food',
-    icon: <CIcon name="cil-dog" customClasses="c-sidebar-nav-icon"/>
+    icon: <CIcon name="cil-scrubber" customClasses="c-sidebar-nav-icon"/>
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'Service',
     to: '/service',
-    icon: <CIcon name="cil-dog" customClasses="c-sidebar-nav-icon"/>
+    icon: <CIcon name="cil-people" customClasses="c-sidebar-nav-icon"/>
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'Ambience',
     to: '/ambience',
-    icon: <CIcon name="cil-dog" customClasses="c-sidebar-nav-icon"/>
+    icon: <CIcon name="cil-home" customClasses="c-sidebar-nav-icon"/>
   }
 ]
 

@@ -5,7 +5,7 @@ const TheFooter = () => {
   return (
     <CFooter fixed={false}>
       <div className="mfs-auto">
-        Description here
+        Copyright © 2021 by CoolCode
       </div>
     </CFooter>
   )
