@@ -13,31 +13,18 @@ interface TrackProps {
 }
 
 export default ({ track, artist, index, navigation }: TrackProps) => (
-  <TouchableOpacity onPress={() => navigation.navigate("BrowseFood")}>
-  <View style={styles.row}>
-    <Avatar source={{uri: track.avatar_url}} />
-    <View style={[styles.cell, { flex: 1 }]}>
-      <Text style={styles.artist}>{track.time || artist}</Text>
+  <View style={styles.cell}>
+    <TouchableOpacity onPress={() => navigation.navigate("BrowseFood")}>
+      <Avatar source={{uri: track.avatar_url}} />
       <Text style={styles.name}>{track.name}</Text>
-      <Text style={styles.artist}>{track.address || artist}</Text>
-      <Text style={styles.artist}>{track.tags || artist}</Text>
-    </View>
-    <View style={styles.cell}>
-      <Icon name="more-horizontal" color="#b2b3b4" size={24} />
-    </View>
+    </TouchableOpacity>
   </View>
-  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: "row",
-    backgroundColor: "white",
-    textAlignVertical: "center"
-  },
   cell: {
-    padding: 16,
-    justifyContent: "center",
+    width: "50%",
+    backgroundColor: "white"
   },
   index: {
     color: "#b2b3b4",

@@ -10,7 +10,7 @@ import {
   Album, MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT,
 } from "./Model";
 import Track from "./Track";
-import { BUTTON_HEIGHT } from "./ShufflePlay";
+import ShufflePlay, { BUTTON_HEIGHT } from "./ShufflePlay";
 import Header from "./Header";
 
 interface ContentProps {
@@ -59,6 +59,7 @@ export default ({ album: { artist, tracks }, y, navigation }: ContentProps) => {
       </View>
       <View style={styles.header}>
         <Header {...{ y, artist }} />
+        <ShufflePlay {...{ navigation }}/>
       </View>
       <View style={styles.tracks}>
         {
@@ -106,5 +107,9 @@ const styles = StyleSheet.create({
   tracks: {
     paddingTop: 32,
     backgroundColor: "black",
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start' // if you want to fill rows left to right
   },
 });
