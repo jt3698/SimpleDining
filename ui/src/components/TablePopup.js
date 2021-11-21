@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import ReactModal from 'react-modal';
+import { styled as mat_styled } from '@mui/material/styles';
+import { Button, List, ListItem, ListItemText } from "@mui/material";
+
 const Wrapper = styled.div`
 	display:flex;
 	flex-direction:column;
@@ -7,44 +10,46 @@ const Wrapper = styled.div`
 `;
 
 const StyledTitle = styled.h1`
-
+	width:100%;
 `
 
-const StyledList = styled.ul`
+const StyledList = mat_styled(List)`
 	display: flex;
 	flex-direction:column;
 `
-const StyledItem = styled.li`
+const StyledItem = mat_styled(ListItem)`
 	display:grid;
 	grid-template-columns: 2fr 1fr 1fr 1fr;
 	list-style-type: none;
 `
 
-const StyledHeading = styled.li`
+const StyledHeading = mat_styled(ListItem)`
 display:grid;
 grid-template-columns: 2fr 1fr 1fr 1fr;
 list-style-type: none;
+font-weight: bold;
+text-decoration: underline;
 `
 
 
-const StyledName = styled.div`
+const StyledName = mat_styled(ListItemText)`
 
 `
 
-const StyledPrice = styled.div`
+const StyledPrice = mat_styled(ListItemText)`
 	text-align:right;
 `
 
-const StyledQuantity = styled.div`
+const StyledQuantity = mat_styled(ListItemText)`
 	text-align:right;
 `
 
-const StyledSubtotal = styled.div`
+const StyledSubtotal = mat_styled(ListItemText)`
 	text-align:right;
 
 `
 
-const StyledTotal = styled.div`
+const StyledTotal = mat_styled(ListItemText)`
 	margin-top:auto;
 	text-align:right;
 `
@@ -57,11 +62,11 @@ const ButtonWrapper = styled.div`
 	margin-top:20px;
 `
 
-const StyledConfirm = styled.button`
+const StyledConfirm = mat_styled(Button)`
 
 `
 
-const StyledCancel = styled.button`
+const StyledCancel = mat_styled(Button)`
 
 `
 
@@ -101,7 +106,7 @@ const TablePopup = (props)=>{
 			}
 		}}>
 			<Wrapper>
-				<StyledTitle>Table Number: {number+1}</StyledTitle>
+				<StyledTitle>Table Number: <span style={{textAlign:"right", marginLeft:"auto"}}>{number+1}</span></StyledTitle>
 				<StyledList>
 					<StyledHeading>
 						<StyledName>Item</StyledName>
@@ -110,10 +115,7 @@ const TablePopup = (props)=>{
 						<StyledSubtotal>Subtotal</StyledSubtotal>
 					</StyledHeading>
 
-					{/* blank line */}
-					<StyledItem> 
-						ㅤ
-					</StyledItem>
+				
 
 					{order.Items.map(item=>
 						<StyledItem>
@@ -128,8 +130,8 @@ const TablePopup = (props)=>{
 					Total: ${total}
 				</StyledTotal>
 				<ButtonWrapper>
-					<StyledConfirm onClick={onRequestClose}> Confirm</StyledConfirm>
-					<StyledCancel onClick={onRequestClose}> Cancel</StyledCancel>
+					<StyledConfirm variant="contained" onClick={onRequestClose}> Confirm</StyledConfirm>
+					<StyledCancel variant="contained" onClick={onRequestClose}> Cancel</StyledCancel>
 				</ButtonWrapper>
 			</Wrapper>
 		</ReactModal>

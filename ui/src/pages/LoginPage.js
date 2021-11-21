@@ -1,6 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled from 'styled-components'
 import { Link, useNavigate } from "react-router-dom";
+import {Button, TextField} from '@mui/material'
+import { styled as mat_styled } from '@mui/material/styles';
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -27,9 +29,8 @@ const StyledForm = styled.form`
 	outline: 10px;
 `;
 
-const StyledInput = styled.input`
+const StyledInput = mat_styled(TextField)`
 	width: 100%;
-  height: 40px;
   font-size: 1.1rem;
   outline: none;
 `;
@@ -40,10 +41,11 @@ const StyledForget = styled(Link)`
 	color: inherit;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = mat_styled(Button)`
   width: 50%;
 	font-size: 1.5rem;
 	cursor: pointer;
+	margin-top:10%;
 `;
 
 const StyledRegister = styled.div`
@@ -86,7 +88,7 @@ const LoginPage = (props) => {
 						ref={inputPassword}
 					/>
 					<StyledForget to="/password-recovery">Forgot Password?</StyledForget>
-					<StyledButton type="submit">Login</StyledButton>
+					<StyledButton variant="contained" type="submit" >Login</StyledButton>
 					<StyledRegister>Or register your business <Link to="/register">here</Link></StyledRegister>
 				</StyledForm>
 			</PageWrapper>
