@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import { ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import {Card} from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
@@ -20,22 +20,20 @@ interface ReviewProps {
 export default ({ navigation }: ReviewProps) => {
     const list = [
         {
-          name: 'Big Mac',
+          name: 'Gyudon',
         //   icons: Icon<
-          price: "$10",
-          avatar_url: 'https://www.mcdonalds.com/is/image/content/dam/usa/nfl/nutrition/items/hero/desktop/t-mcdonalds-Big-Mac.jpg',
-          description: 'Two 100% beef patties, a slice of cheese, lettuce, onion and pickles. And the sauce. That unbeatable, tasty Big Mac® sauce. You know you want to.      ',
+          price: "$16",
+          avatar_url: 'https://image.shutterstock.com/image-photo/gyudon-japanese-food-beef-bowl-260nw-1087462463.jpg',
           rating: <Rating
-            showRating fractions={1}  startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>,
+            showRating fractions={1}  startingValue={2.5} ratingCount={5} imageSize = {20}  style={{width: 150, paddingBottom: 5 }}/>,
             
         },
         {
-          name: 'Fillet-O-Fish',
-          price: "$8",
-          avatar_url: 'https://www.mcdonalds.com/is/image/content/dam/usa/nfl/nutrition/items/hero/desktop/t-mcdonalds-Filet-O-Fish.png',
-          description: 'Delicious white Hoki or Pollock fish in crispy breadcrumbs, with cheese and tartare sauce, in a steamed bun.',
+          name: 'Salmon Sushi',
+          price: "$21",
+          avatar_url: 'https://tatyanaseverydayfood.com/wp-content/uploads/2014/04/Spicy-Salmon-Sushi-Roll.jpg',
           rating: <Rating
-             showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}
+             showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{width: 150, paddingBottom: 5 }}
             />,
         }
       ]
@@ -45,17 +43,17 @@ export default ({ navigation }: ReviewProps) => {
         {
             list.map((l, i) => (
             <ListItem key={i} bottomDivider>
-                <Avatar source={{uri: l.avatar_url}} />
-                <ListItem.Content>
+              <ImageBackground source={{uri:l.avatar_url}} style={styles.image}>
+                <ListItem.Content style={styles.blurBg}>
                 <View style={styles.subtitleView}>
                     <ListItem.Title>{l.name}</ListItem.Title>
                 </View>
                 <ListItem.Subtitle>{l.price}</ListItem.Subtitle>
-                <ListItem.Subtitle>{l.rating}</ListItem.Subtitle>
-                <ListItem.Subtitle>{l.description}</ListItem.Subtitle>
+                <View style={styles.blurBg}>{l.rating}</View>
                 <TextInput style={styles.smallInput} placeholder="What do you think about the food?"/>
 
                 </ListItem.Content>
+              </ImageBackground>
 
             </ListItem>
             
@@ -81,8 +79,20 @@ export default ({ navigation }: ReviewProps) => {
 const styles = StyleSheet.create({
     subtitleView: {
       flexDirection: 'row',
-      paddingLeft: 10,
       paddingTop: 5
+    },
+    image: {
+      width: '100%',
+      height: '100%',
+      position: 'relative',
+      zIndex: -1,
+      flex: 1,
+      justifyContent: "center",
+      alignContent: "center",
+      flexDirection: 'row',
+    },
+    blurBg: {
+      backgroundColor: 'rgba(255,255,255,0.69)',
     },
     smallInput: {
       height: 40,

@@ -19,17 +19,17 @@ const { Value } = Animated;
 
 export default ({ album, navigation, menuItems }: AlbumProps) => {
   const y = new Value(0);
-  const getMenuItemContainer = (menuItem: MenuItem) => {
+  const getMenuItemContainer = (menuItem: MenuItem, idx: number) => {
     console.log('menu item');
-    return <MenuItemContainer {...{navigation, menuItem}}></MenuItemContainer>
+    return <MenuItemContainer key={idx} {...{navigation, menuItem}}></MenuItemContainer>
   }
   return (
     <View style={styles.container}>
       <Image
         style={styles.topImage}
         source={album.cover}></Image>
-      {menuItems.map((menu) => {
-        return getMenuItemContainer(menu)
+      {menuItems.map((menu, idx) => {
+        return getMenuItemContainer(menu, idx)
       })}
     </View>
   );
