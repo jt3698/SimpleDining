@@ -40,7 +40,7 @@ export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'
         const user = userCredential.user;
         console.log("success, user", user)
         console.log(userCredential)
-        navigation.navigate('BrowseRestos')
+        navigation.navigate('Root')
     })
     .catch((error) => {
         const errorCode = error.code;

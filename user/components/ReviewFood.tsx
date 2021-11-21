@@ -12,8 +12,12 @@ import { ListItem, Avatar } from 'react-native-elements'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { Divider } from 'react-native-elements';
 
+interface ReviewProps {
 
-export default function ReviewFood({ restoName }: { restoName: string }) {
+  navigation: any;
+}
+
+export default ({ navigation }: ReviewProps) => {
     const list = [
         {
           name: 'Big Mac',
@@ -54,7 +58,7 @@ export default function ReviewFood({ restoName }: { restoName: string }) {
             ))
             
             }
-            <Button buttonStyle={{backgroundColor:'#f7b307', marginTop:20, marginLeft:10, marginRight:10 }} title="Submit Review" ></Button>
+       <Button buttonStyle={{backgroundColor:'#f7b307', marginTop:20, marginLeft:10, marginRight:10 }} title="Submit Review!" onPress={() => navigation.navigate("Root")}></Button>
 
         </View>
         </ScrollView>
