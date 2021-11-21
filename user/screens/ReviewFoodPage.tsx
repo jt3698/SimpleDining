@@ -16,7 +16,7 @@ export default function ReviewFoodPage({ navigation }: RootTabScreenProps<'Revie
     <View style={styles.container}>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       {/* INSERT SCROLLBAR HERE LATER */}
-      <ReviewFood restoName ="McDonald's"/>
+      <ReviewFood {...{navigation}} />
     </View>
   );
 }
