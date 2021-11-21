@@ -108,7 +108,7 @@ export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPag
         </Image>
         <Text style={styles.title}>Verify Phone Number</Text>
 
-        {isPhoneEntered &&
+        {!isPhoneEntered &&
         <View style={styles.block}>
           <Text style={styles.regular}>Please enter your phone number</Text>
           <PhoneInput
@@ -134,7 +134,7 @@ export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPag
         </View>
         }
 
-        {!isPhoneEntered &&
+        {isPhoneEntered &&
         <View style={styles.block}>
           <Text>Please enter the verification code we sent to {formattedValue}</Text>
           <TextInput style={styles.input} keyboardType="numeric" value={verificationCode} onChangeText={(text) => {
