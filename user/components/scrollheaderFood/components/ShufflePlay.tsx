@@ -1,17 +1,21 @@
 import * as React from "react";
 import {
-  View, Text, StyleSheet, TouchableWithoutFeedback,
+  View, Text, StyleSheet, TouchableWithoutFeedback, TouchableOpacity
 } from "react-native";
 
 export const BUTTON_HEIGHT = 48;
 export const BUTTON_WIDTH = 200;
 
-export default () => (
-  <TouchableWithoutFeedback>
+interface CartProps {
+  navigation: any;
+}
+
+export default ({ navigation }: CartProps) => (
+  <TouchableOpacity onPress={() => navigation.navigate("ViewCart")}>
     <View style={styles.button}>
-      <Text style={styles.label}>SHUFFLE PLAY</Text>
+      <Text style={styles.label}>View Cart</Text>
     </View>
-  </TouchableWithoutFeedback>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

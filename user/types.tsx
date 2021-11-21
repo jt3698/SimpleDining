@@ -20,6 +20,7 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   BrowseFood: undefined;
+  ViewCart: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -36,7 +37,7 @@ export type RootTabParamList = {
   AccountIcon: undefined;
   AddToCart: undefined;
   ReviewFood: undefined;
-  ViewCart: undefined;
+  ViewCarts: undefined;
   LoginPage: undefined;
   VerifyPage: undefined;
 };
