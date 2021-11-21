@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Image, StyleSheet } from 'react-native';
-import SBar  from '../components/SearchBar';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -88,38 +87,6 @@ const album: AlbumModel = {
       avatar_url: 'https://cdn.vox-cdn.com/thumbor/O4hfza3mIKtZfc6AR6jpTl_gaSI=/0x0:900x631/1200x800/filters:focal(378x244:522x388)/cdn.vox-cdn.com/uploads/chorus_image/image/66371464/cocoich2.0.jpg',
       tags: 'Asian',
       rating: 5,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
       time: "11:30AM to 11PM",
       address: "290 Blvd St, Waterloo"
     }
