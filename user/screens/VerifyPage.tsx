@@ -104,12 +104,11 @@ export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPag
 
   return (
     <View style={styles.container}>
+      <Image style={styles.image} source={{uri: "https://hips.hearstapps.com/toc.h-cdn.co/assets/17/01/1483652513-lebernardin-daniel-krieger.jpg"}}></Image>
       <View style={styles.content}>
         <Image
           style={styles.logo}
-          source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Logo_TV_2015.svg/1200px-Logo_TV_2015.svg.png',
-          }}>
+          source={require('../assets/images/logo.png')}>
         </Image>
         <Text style={styles.title}>Verify Phone Number</Text>
 
@@ -157,9 +156,11 @@ export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPag
         }
           
       </View>
+      {false &&
       <View style={styles.footer}>
         <Text style={styles.subtitle} onPress={skipVerification}>Skip verification...</Text>
       </View>
+}
     </View>
   );
 }
@@ -180,6 +181,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   footer: {
     alignItems: 'center',
@@ -188,22 +190,26 @@ const styles = StyleSheet.create({
   smallblock: {
     padding: 10,
     alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   block: {
     padding: 30,
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   button: {
     padding: 30,
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   error: {
     color: 'red',
   },
   regular: {
     padding: 10,
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   logo: {
-    width: 66,
-    height: 58,
+    width: 75,
+    height: 75,
   },
   input: {
     width: 100,
@@ -226,4 +232,10 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  image: {
+    position: 'absolute',
+    width: '100%',
+    height: '120%',
+    opacity: 0.18,
+  }
 });

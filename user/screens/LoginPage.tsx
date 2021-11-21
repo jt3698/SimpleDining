@@ -89,6 +89,7 @@ export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'
 
   return (
     <View style={styles.container}>
+      <Image style={styles.image} source={{uri: "https://hips.hearstapps.com/toc.h-cdn.co/assets/17/01/1483652513-lebernardin-daniel-krieger.jpg"}}></Image>
       <View style={styles.content}>
         <Image
           style={styles.logo}
@@ -126,6 +127,7 @@ export default function LoginPage({ navigation }: RootTabScreenProps<'LoginPage'
         <View style={styles.horizontalContainer}>
           <View style={styles.iconContainer}>
             <Icon.Button
+            style={styles.blurbg}
               name="facebook"
               backgroundColor="#3b5998"
               onPress={logInWithFacebook}
@@ -155,10 +157,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
+  },
+  blurbg: {
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   content: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   error: {
     color: 'red',
@@ -166,17 +173,21 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: 'center',
     paddingBottom: 20,
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   smallblock: {
     padding: 10,
     alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   block: {
     padding: 30,
     alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   button: {
     padding: 30,
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   logo: {
     width: 75,
@@ -203,6 +214,13 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   iconContainer: {
-    padding: 15
+    padding: 15,
+    backgroundColor: 'rgba(0,0,0,0)'
+  },
+  image: {
+    position: 'absolute',
+    width: '100%',
+    height: '120%',
+    opacity: 0.18,
   }
 });
