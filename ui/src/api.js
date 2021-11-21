@@ -7,5 +7,13 @@ const getOrders = async () => {
 	console.log(response)
 	return response.data
 }
+const getFilteredOrders = (filter) => {
+	return getOrders().then(orders=>{
+		return orders.filter(filter)
+	})
+}
+const orderFilter = (status) => (x) =>{
+	return x.Status === status
+}
 
-export {getOrders}
+export {getOrders, getFilteredOrders, orderFilter}
