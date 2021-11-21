@@ -21,21 +21,26 @@ export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPag
   const [isPhoneEntered, setIsPhoneEntered] = React.useState(false);
   const [verificationCode, setVerificationCode] = React.useState('');
 
+  let phoneNumber: string;
+
   const data = require('../secrets/twilio.json');// JSON.parse(fs.readFileSync('../secrets/twilio.json') as any)
   const serviceSid = data.serviceSid
   const accountSid = data.accountSid
   const authToken = data.authToken
   const twilioURI = `https://verify.twilio.com/v2/Services/${serviceSid}/`
 
-  const sendCode = async () => {
+  const verifyPhoneNumber = () => {
     if (!phoneInput.current?.isValidNumber(value)) {
       setErrorMessage('Invalid Phone Number');
       setIsPhoneEntered(false);
       return;
     }
+    phoneNumber = formattedValue
 
+    sendCode()
+  }
+  const sendCode = async () => {
     console.log('send code')
-    const phoneNumber = formattedValue;
     const URI = twilioURI+'Verifications'
     console.log('twilio uri', URI)
 
@@ -129,7 +134,7 @@ export default function VerifyPage({ navigation }: RootTabScreenProps<'VerifyPag
           />
           <Text style={styles.error}>{errorMessage}</Text>
           <View style={styles.regular}>
-            <Button style={styles.button} raised title="Verify" onPress={sendCode}></Button>
+            <Button style={styles.button} raised title="Verify" onPress={verifyPhoneNumber}></Button>
           </View>
         </View>
         }
