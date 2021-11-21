@@ -10,11 +10,12 @@ import FoodPanelInfo from '../components/FoodPanelInfo';
 import FoodDetail from '../components/FoodDetail';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import Album from "../components/scrollheaderFood/components/Album";
-import { Album as AlbumModel } from "../components/scrollheaderFood/components/Model";
+import { Album as AlbumModel, MenuItem } from "../components/scrollheaderFood/components/Model";
 
 import { useState, useEffect } from "react";
 import { Asset } from "expo-asset";
 import { StatusBar } from "react-native";
+import MenuAlbum from '../components/scrollheaderFood/components/MenuAlbum';
 
 const album: AlbumModel = {
   name: "Remote Control",
@@ -22,209 +23,60 @@ const album: AlbumModel = {
   release: 2016,
   // eslint-disable-next-line global-require
   cover: require("../assets/images/sushifine.png"),
-  tracks: [
+  tracks: []
+}
+
+const menuItems: MenuItem[] = [
     {
-      name: 'McDonssald\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western, Fast Food',
-      rating: 4,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      name: 'Gyudon',
+      price: 16,
+      isThumbsUp: true,
+      isChefRecommended: true,
+      picturePath: 'https://image.shutterstock.com/image-photo/gyudon-japanese-food-beef-bowl-260nw-1087462463.jpg',
     },
     {
-      name: 'KFC',
-      avatar_url: 'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/v1488265976/k2htrr9z4vsxkjbthskk.png',
-      tags: 'Western, Fast Food',
-      rating: 4.5,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      name: 'Tsukemen',
+      price: 14,
+      isThumbsUp: true,
+      isChefRecommended: false,
+      picturePath: 'https://images.squarespace-cdn.com/content/v1/5bb430e47980b379b65a09b8/1553597266101-PK3AO9N3C4JCIDVX2WXW/IMG_20190215_160731.jpg?format=1000w',
     },
     {
-      name: 'Bakmi GM',
-      avatar_url: 'https://www.seekpng.com/png/detail/223-2236625_bakmi-gm.png',
-      tags: 'Asian',
-      rating: 4.3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      name: 'Salmon Sushi Roll',
+      price: 21,
+      isThumbsUp: false,
+      isChefRecommended: true,
+      picturePath: 'https://tatyanaseverydayfood.com/wp-content/uploads/2014/04/Spicy-Salmon-Sushi-Roll.jpg',
     },
     {
-      name: 'HokBen',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/en/0/02/HokBen_Logo.jpg',
-      tags: 'Asian',
-      rating: 4.3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      name: 'Kobe Beef',
+      price: 50,
+      isThumbsUp: false,
+      isChefRecommended: false,
+      picturePath: 'https://hankstruebbq.com/wp-content/uploads/2018/02/kobe-sliced-1000x666.jpg',
     },
     {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      name: 'Oyakodon',
+      price: 15,
+      isThumbsUp: false,
+      isChefRecommended: false,
+      picturePath: 'https://cookingwithdog.com/wp-content/uploads/2017/02/oyakodon-00-1024x576.jpg',
     },
     {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      name: 'Salmon Teriyaki',
+      price: 18,
+      isThumbsUp: false,
+      isChefRecommended: false,
+      picturePath: 'http://www.seasonalcravings.com/wp-content/uploads/2016/10/easyteriyakisalmon24ps.jpg',
     },
     {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
-    },
-    {
-      name: 'Gino\'s',
-      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
-      tags: 'Western',
-      rating: 3,
-      time: "11:30AM to 11PM",
-      address: "290 Blvd St, Waterloo"
+      name: 'Takoyaki',
+      price: 9,
+      isThumbsUp: true,
+      isChefRecommended: false,
+      picturePath: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Takoyaki.jpg/1200px-Takoyaki.jpg',
     }
   ]
-};
 
 export default function BrowseFoodsPage({ navigation }: RootTabScreenProps<'BrowseFoods'>) {
   const [ready, setReady] = useState(false);
@@ -234,10 +86,15 @@ export default function BrowseFoodsPage({ navigation }: RootTabScreenProps<'Brow
       setReady(true);
     })();
   });
+
+  const viewCart = () => {
+    navigation.navigate('ViewCart')
+  }
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <Album {...{ album, navigation }}/>
+      <MenuAlbum {...{ album, navigation, menuItems }}/>
+      <Button buttonStyle={{backgroundColor:'#f7b307' }} title="View Cart" onPress={viewCart}></Button>
     </>
   );
 

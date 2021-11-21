@@ -24,3 +24,11 @@ export interface Album {
   cover: number;
   tracks: Track[];
 }
+
+export interface MenuItem {
+  name: string;
+  price: number;
+  isThumbsUp: boolean;
+  isChefRecommended: boolean;
+  picturePath: string;
+}
