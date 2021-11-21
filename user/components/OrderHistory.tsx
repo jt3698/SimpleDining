@@ -19,11 +19,11 @@ export default ({ navigation } : OrderProps) => {
     const list = [
         {
           name: 'Don\'s Japanese',
-          total_Price: '$56',
+          total_Price: '$58',
           avatar_url: 'https://pbs.twimg.com/profile_images/880230764457193473/G0NpHblC_400x400.jpg',
-          time_of_order:'21/11/2021 8:26 A.M',
+          time_of_order:'21/11/2021 8:50 A.M',
           rating: <Rating
-            showRating fractions={1} startingValue={0} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10,  }}/>,
+            showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 5 }}/>,
             button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" onPress={() => navigation.navigate("ReviewFood")}></Button>
             
         },
@@ -33,7 +33,7 @@ export default ({ navigation } : OrderProps) => {
           avatar_url: 'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/v1488265976/k2htrr9z4vsxkjbthskk.png',
           time_of_order:'13/11/2021 7:53 P.M',
           rating: <Rating
-             showRating fractions={1} startingValue={3.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}
+             showRating fractions={1} startingValue={3.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 5 }}
             />,
             button: <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" onPress={() => navigation.navigate("ReviewFood")}></Button>
         },
@@ -43,7 +43,7 @@ export default ({ navigation } : OrderProps) => {
             avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png',
             time_of_order:'10/11/2021 1:21 P.M',
             rating: <Rating
-               showRating fractions={1} startingValue={3.7} ratingCount={5} imageSize = {20} style={{ paddingVertical: 10 }}
+               showRating fractions={1} startingValue={3.7} ratingCount={5} imageSize = {20} style={{ paddingVertical: 5 }}
               />,
               button:  <Button buttonStyle={{backgroundColor:'#f7b307' }} title="Review the food!" onPress={() => navigation.navigate("ReviewFood")}></Button>
 
