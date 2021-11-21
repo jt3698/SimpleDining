@@ -53,16 +53,24 @@ export default ({ navigation }: ReviewProps) => {
                 <ListItem.Subtitle>{l.price}</ListItem.Subtitle>
                 <ListItem.Subtitle>{l.rating}</ListItem.Subtitle>
                 <ListItem.Subtitle>{l.description}</ListItem.Subtitle>
+                <TextInput style={styles.smallInput} placeholder="What do you think about the food?"/>
+
                 </ListItem.Content>
+
             </ListItem>
+            
             ))
             
-            }
-            <TextInput
-        style={styles.input}
-        placeholder="Type what you think about the restaurant here!"
-      />
-       <Button buttonStyle={{backgroundColor:'#f7b307', marginTop:20, marginLeft:10, marginRight:10 }} title="Submit Review!" onPress={() => navigation.navigate("Root")}></Button>
+            }            
+            <Text style={{textAlign:"center", paddingTop:10, fontSize:16}}> Rate the Service!</Text>
+            <Rating showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>
+            <TextInput style={styles.input} placeholder="What do you think about the Service?"/>
+            
+            <Text style={{textAlign:"center", paddingTop:10, fontSize:16}}> Rate the Ambience!</Text>
+            <Rating showRating fractions={1} startingValue={2.5} ratingCount={5} imageSize = {20}  style={{ paddingVertical: 10 }}/>
+            <TextInput style={styles.input} placeholder="What do you think about the ambience?"/>
+
+       <Button buttonStyle={{marginBottom:30 ,backgroundColor:'#f7b307', marginTop:20, marginLeft:10, marginRight:10 }} title="Submit Review!" onPress={() => navigation.navigate("Root")}></Button>
 
         </View>
         </ScrollView>
@@ -75,6 +83,13 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       paddingLeft: 10,
       paddingTop: 5
+    },
+    smallInput: {
+      height: 40,
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+      textAlignVertical: "top",
     },
     input: {
       height: 80,
