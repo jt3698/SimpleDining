@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/';
+const API_URL = 'http://45.79.230.215/';
 
 const getOrders = async () => {
 	const response = await axios.get(API_URL+'orders/')
