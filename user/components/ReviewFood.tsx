@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import {Card} from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
@@ -58,6 +58,10 @@ export default ({ navigation }: ReviewProps) => {
             ))
             
             }
+            <TextInput
+        style={styles.input}
+        placeholder="Type what you think about the restaurant here!"
+      />
        <Button buttonStyle={{backgroundColor:'#f7b307', marginTop:20, marginLeft:10, marginRight:10 }} title="Submit Review!" onPress={() => navigation.navigate("Root")}></Button>
 
         </View>
@@ -71,6 +75,13 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       paddingLeft: 10,
       paddingTop: 5
+    },
+    input: {
+      height: 80,
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+      textAlignVertical: "top",
     },
     ratingImage: {
       height: 19.21,
